@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import useSignin from '../hooks/useSignin';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleLogin = (e) => {
+  const {loading,  signin} = useSignin();
+  const handleLogin = async (e) => {
     e.preventDefault();
     // Add login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    await signin({email, password});
   };
 
   return (
@@ -45,8 +45,10 @@ function LoginPage() {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary outline-none border-none w-full bg-slate-800 hover:bg-slate-900 text-white">
-            Login
+          <button type="submit"
+          disabled={loading}
+          className="btn btn-primary outline-none border-none w-full bg-slate-800 hover:bg-slate-900 text-white">
+            {loading ? <span className=' loading loading-spinner'></span> : 'Login'}
           </button>
         </form>
 

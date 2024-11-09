@@ -1,19 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { BiSolidFileImage } from 'react-icons/bi'
+import useConversation from '../../store/useConversation'
 
 function MessageContainer() {
-  const nochatSelect = true;
+  const {selectedConversation, setSelectedConversation } = useConversation();
+
+  useEffect(() => {
+    // cleanup
+    return () => setSelectedConversation(null)
+  },[setSelectedConversation])
   return (
     <div className=' md:min-w-[500px] flex flex-col'>
        {
-         nochatSelect ? <NoChatSelected /> : (
+         !selectedConversation ? <NoChatSelected /> : (
           <>
           {/* Header */}
           <div className=' bg-slate-600 px-4 py-2 mb-2'>
-              <span className=' label-text'>To</span>
-              <span className=' to-gray-700 font-bold'>John Doe</span>
+              <span className=' text-gray-200 font-bold'>{selectedConversation?.fullname}</span>
           </div>
   
           {/* Messages */}

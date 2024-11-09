@@ -9,33 +9,26 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+/* 1. Customize the scrollbar track */
+::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+  background-color: #f5f5f5; /* Background of the track */
+}
 
-/*
-  Make the scrollbar a little bit more visible by making it a bit thicker
-  and giving it a dark background and a black thumb
-*/
-::-webkit-scrollbar{
-  width: 8px;
+/* 2. Customize the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the thumb */
+  border-radius: 10px; /* Rounded corners */
+  border: 2px solid #f5f5f5; /* Adds a gap between thumb and track */
 }
-/*
-  The track is the background of the scrollbar
-  Set the color to a dark gray color
-*/
-::-webkit-scrollbar-track{
-  background-color: #555;
+
+/* 3. Customize the scrollbar when hovering */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker shade on hover */
 }
-/*
-  The thumb is the part of the scrollbar that you can drag
-  Set the color to black and give it rounded corners
-*/
-::-webkit-scrollbar-thumb{
-  background-color: #121212;
-  border-radius: 10px;
+
+/* 4. Customize the scrollbar corner (for scrollbars on both axes) */
+::-webkit-scrollbar-corner {
+  background-color: #f5f5f5; /* Corner color */
 }
-/*
-  When you hover over the thumb, change the color to a slightly lighter 
-  shade of gray
-*/
-::-webkit-scrollbar-thumb:hover{
-  background-color: #333;
-}
+
