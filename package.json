@@ -1,10 +1,11 @@
+
 {
   "name": "my-portal",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm run build --prefix client && npm run build --prefix server",
-    "install:all": "npm install --prefix client && npm install --prefix server",
-    "start": "npm run start --prefix server && npm run start --prefix client",
+    "install": "npm install --prefix client && npm install --prefix server",
+    "build": "npm run build --prefix client", 
+    "start": "npm run start --prefix server & npm run start --prefix client",
     "start:client": "npm start --prefix client",
     "start:server": "npm start --prefix server"
   }
