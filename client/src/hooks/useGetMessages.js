@@ -23,6 +23,10 @@ function useGetMessages() {
          }
      }
      if(selectedConversation._id) getMessages();
+     return () => {
+        console.log("useGetMessages cleanup")
+        setMessages([]);
+     }
  },[selectedConversation._id, setMessages])
   return {loading, messages}
 }

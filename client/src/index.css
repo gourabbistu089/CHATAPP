@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 body{
-  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.pexels.com/photos/236599/pexels-photo-236599.jpeg?auto=compress&cs=tinysrgb&w=800');
+  /* background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/757889/pexels-photo-757889.jpeg?auto=compress&cs=tinysrgb&w=600'); */
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  /* background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/816608/pexels-photo-816608.jpeg?auto=compress&cs=tinysrgb&w=600'); */
   background-size: cover;
-  background-position: center;
+  background-position:center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -32,3 +34,25 @@ body{
   background-color: #f5f5f5; /* Corner color */
 }
 
+
+
+/* Define the shake-little animation */
+@keyframes shake-little {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-1px);
+  }
+}
+
+/* Apply the shake-little animation */
+.shake-little {
+  animation: shake-little 0.5s ease-in-out;
+}

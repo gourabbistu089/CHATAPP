@@ -16,6 +16,7 @@ function SignUpPage() {
   });
 
   const handleSignUp = async (e) => {
+    // console.log(inputs)
     e.preventDefault();
     setInputs({
       username: '',

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BiMailSend, BiSolidSend } from 'react-icons/bi'
 import{BsSend} from 'react-icons/bs'
 import useSendMessage from '../../hooks/useSendMessage';
 
@@ -24,7 +23,7 @@ function MessageInput() {
                 placeholder='Type a message'
                 />
                 <button type='submit' className=' absolute inset-y-0 end-0 flex items-center pe-3' >
-                   {loading ? <div className=' loading loading-spinner'></div> :  <BsSend  className="h-6 w-6" />}
+                   {loading ? <div className=' loading loading-spinner'></div> :  <BsSend  className={`h-6 w-6 ${message ? "text-white" : "text-gray-400"}`}/>}
                 </button>
               
             </div>

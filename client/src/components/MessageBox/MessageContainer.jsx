@@ -3,6 +3,9 @@ import Messages from './Messages'
 import MessageInput from './MessageInput'
 import { BiSolidFileImage } from 'react-icons/bi'
 import useConversation from '../../store/useConversation'
+import { useAuthContext } from '../../context/AuthContext'
+import { HiInformationCircle } from "react-icons/hi";
+import MessageHeader from './MessageHeader'
 
 function MessageContainer() {
   const {selectedConversation, setSelectedConversation } = useConversation();
@@ -12,19 +15,18 @@ function MessageContainer() {
     return () => setSelectedConversation(null)
   },[setSelectedConversation])
   return (
-    <div className=' md:min-w-[500px] flex flex-col'>
+    <div className='flex-1
+     flex flex-col '>
        {
          !selectedConversation ? <NoChatSelected /> : (
           <>
           {/* Header */}
-          <div className=' bg-slate-600 px-4 py-2 mb-2'>
-              <span className=' text-gray-200 font-bold'>{selectedConversation?.fullname}</span>
-          </div>
+         <MessageHeader />
   
           {/* Messages */}
           <Messages/>
           {/* Message input */}
-          <MessageInput/>
+          <MessageInput />
           </>
          )
        }
@@ -37,15 +39,21 @@ export default MessageContainer
 
 
 const NoChatSelected = () => {
+    const {authUser} = useAuthContext();
   return (
-    <div className=' bg-slate-600/10 px-4 py-2 mb-2 flex justify-center items-center w-full h-full'>
-      <div className=' px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2'>
-        <p>Welcome to John Doe</p>
-        <p>Select a chat to start messaging</p>
-        < BiSolidFileImage className=' h-16 w-16' />
-
+    <div className='bg-gradient-to-rpx-6 py-4 mb-4 flex justify-center items-center w-full h-full'>
+      <div className='px-4 text-center sm:text-lg md:text-xl text-white font-semibold flex flex-col items-center gap-4'>
+        <p className='flex items-center gap-2'>
+          <span className='text-lg'>Welcome to</span>
+          <span className='text-2xl font-extrabold'>{authUser.fullname}</span>
+        </p>
+        <p className='text-gray-300'>Select a chat to start messaging</p>
+        <div className='flex items-center justify-center gap-4'>
+          <div className='bg-blue-500 rounded-full p-3 shadow-lg'>
+            <BiSolidFileImage className='text-white' size={28} />
+          </div>
+        </div>
       </div>
-        
     </div>
   )
 }

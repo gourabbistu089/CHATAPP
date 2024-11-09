@@ -2,7 +2,10 @@ import {createContext, useContext, useState } from "react";
 
 
 // create a context 
-export const AuthContext = createContext();
+ const AuthContext = createContext();
+export const useAuthContext = () => {
+    return useContext(AuthContext)
+}
 
 // context provide
 export const AuthContextProvider = ({children}) => {
@@ -14,6 +17,3 @@ export const AuthContextProvider = ({children}) => {
 }
 
 // consume the value
-export const useAuthContext = () => {
-    return useContext(AuthContext)
-}

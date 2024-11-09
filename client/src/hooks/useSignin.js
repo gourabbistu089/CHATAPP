@@ -19,8 +19,7 @@ function useSignin() {
                 toast.error("Invalid Credentials")
             }
             const data = await response.json();
-            setLoading(false)
-            console.log(data);
+            console.log("signin", data);
             if(data.success){
                 toast.success(data.message)
             } else {
@@ -29,7 +28,7 @@ function useSignin() {
             // localStorage
             localStorage.setItem('chat-user', JSON.stringify(data.data.user))
             // context
-            setAuthUser(data.data.user.username)
+            setAuthUser(data.data.user)
         } catch (error) {
             console.log(error)
         } finally {

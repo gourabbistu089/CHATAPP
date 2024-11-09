@@ -7,20 +7,26 @@ const useSignup = () => {
     const[loading, setLoading] = React.useState(false)
     const[error, setError] = React.useState(null)
 
-    const signup = async ({username, email, password, fullname, gender}) => {
+    const signup = async ({username, email, password, fullname, gender, avatar}) => {
         const success =  handleInputError({username, email, password, fullname, gender})
         if(!success) return;
         setLoading(true)
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('fullname', fullname);
+        formData.append('gender', gender);
+        if(avatar) {
+            formData.append('avatar', avatar);
+        }
         try {
             const response = await fetch('/api/v1/auth/signup', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({username, email, password, fullname, gender})
+                body: formData
             })
             const data = await response.json();
-            // console.log(data);
+            console.log(data);
             if(data.success) {
                 toast.success(data.message)
             } else {
@@ -28,11 +34,10 @@ const useSignup = () => {
             }
 
             // localStorage
-            localStorage.setItem('chat-user', JSON.stringify(data.data.user))
+            if(data.data!==undefined)
+                localStorage.setItem('chat-user', JSON.stringify(data.data))
             // context
             setAuthUser(data.data)
-
-            
         }
         catch (error) {
             console.log(error)
